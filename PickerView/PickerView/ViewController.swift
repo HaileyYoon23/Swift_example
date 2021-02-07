@@ -36,35 +36,35 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         imageView.image = imageArray[0]
     }
     
-    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        return PICKER_VIEW_WIDTH
-    }
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return PICKER_VIEW_HEIGHT
-    }
+//    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+//        return PICKER_VIEW_WIDTH
+//    }
+//    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+//        return PICKER_VIEW_HEIGHT
+//    }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return PICKER_VIEW_COLUMN
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return MAX_ARRAY_NUM//imageFileName.count
+        return 1//MAX_ARRAY_NUM//imageFileName.count
     }
     
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        return self.pickImageName(row)//imageFileName[row]
-//    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.pickImageName(row)//imageFileName[row]
+    }
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let imageView = UIImageView(image: imageArray[row])
         imageView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
-        
+
         return imageView
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         name.text = self.pickImageName(row)
         imageView.image = imageArray[row]
     }
-    
+
     func pickImageName(_ index: Int) -> String {
         let imageNum = self.minNum + (index % MAX_ARRAY_NUM)
         return "IMG_\(imageNum).jpg"
